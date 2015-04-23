@@ -14,6 +14,8 @@
   },
   "dependencies": {
     "batch": "^0.5.1",
+    "countries-list": "^1.0.3",
+    "country-data": "0.0.19",
     "extend": "^2.0.0",
     "is": "^2.1.0",
     "isostring": "0.0.1",

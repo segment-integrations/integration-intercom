@@ -97,6 +97,10 @@ describe('Intercom', function(){
       it('should map a company', function(){
         test.maps('identify-company');
       });
+
+      it('should map location', function(){
+        test.maps('identify-location');
+      });
     });
 
     describe('group', function(){

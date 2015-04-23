@@ -1,0 +1,49 @@
+{
+  "input": {
+    "type": "identify",
+    "userId": "user-id",
+    "timestamp": "2014",
+    "traits": {
+      "created": "2014-01-01",
+      "email": "jd@example.com",
+      "firstName": "john",
+      "lastName": "doe"
+    },
+    "context": {
+      "location": {
+        "city": "Dublin",
+        "country": "Ireland",
+        "latitude": 53.159233,
+        "longitude": -6.723,
+        "region": "Dublin"
+      },
+      "timezone": "Europe/Dublin"
+    }
+  },
+  "output": {
+    "user_id": "user-id",
+    "email": "jd@example.com",
+    "last_request_at": 1388534400,
+    "remote_created_at": 1388534400,
+    "name": "john doe",
+    "custom_attributes": {
+      "created_at": 1388534400,
+      "email": "jd@example.com",
+      "firstName": "john",
+      "lastName": "doe",
+      "id": "user-id"
+    },
+    "location_data": {
+      "type": "location_data",
+      "city_name": "Dublin",
+      "continent_code": "EU",
+      "country_code": "IRL",
+      "country_name": "Ireland",
+      "latitude": 53.159233,
+      "longitude": -6.723,
+      "postal_code": null,
+      "region_name": "Dublin",
+      "timezone": "Europe/Dublin"
+    }
+  }
+}
