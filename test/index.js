@@ -110,6 +110,10 @@ describe('Intercom', function(){
       it('should update last_request_at with lastRequestAt when supplied', function(){
         test.maps('identify-last-request-at');
       });
+
+      it('should update unsubscribed_from_emails with unsubscribedFromEmails when supplied', function(){
+        test.maps('identify-unsubscribed-from-emails');
+      });
     });
 
     describe('group', function(){
