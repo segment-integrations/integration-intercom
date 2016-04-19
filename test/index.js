@@ -87,6 +87,10 @@ describe('Intercom', function(){
         test.maps('identify-active');
       });
 
+      it('should respect new session flag', function(){
+        test.maps('identify-new-session');
+      });
+
       it('should map nested dates', function(){
         test.maps('identify-nested-dates');
       });
