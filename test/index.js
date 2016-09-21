@@ -190,7 +190,7 @@ describe('Intercom', function(){
       test
         .set({ apiKey: 'x' })
         .identify({})
-        .error('cannot POST /users (401)', done);
+        .error('Unauthorized', done);
     });
   });
 
@@ -260,7 +260,7 @@ describe('Intercom', function(){
       test
         .set({ apiKey: 'x' })
         .track({})
-        .error('cannot POST /events (401)', done);
+        .error('Unauthorized', done);
     });
   });
 });
