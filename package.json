@@ -19,7 +19,7 @@
     "isostring": "0.0.1",
     "obj-case": "^0.1.1",
     "segmentio-facade": "^2.0.5",
-    "segmentio-integration": "^3.0.5",
+    "segmentio-integration": "^5.0.1",
     "string-hash": "^1.1.0",
     "unix-time": "^1.0.1"
   },
