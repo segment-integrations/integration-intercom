@@ -26,8 +26,8 @@ describe('Intercom', function(){
   beforeEach(function(){
     payload = {};
     settings = {
-      appId: 'a3vy8ufv',
-      apiKey: '4ed539b9c0193de8e75bcb00a357cac54db90902',
+      appId: 'fcxywseo',
+      apiKey: '9d068fa090d38be4c715b669b3f1370f76ac5306',
       collectContext: false
     };
     intercom = new Intercom(settings);
@@ -257,7 +257,7 @@ describe('Intercom', function(){
         .set(settings)
         .track(json.input)
         .sends(json.output)
-        .expects(202)
+        .expects(200)
         .end(done);
     });
 
