@@ -1,0 +1,32 @@
+{
+  "input": {
+    "type": "track",
+    "userId": "hankim813",
+    "timestamp": "2016",
+    "event": "Went to Starbucks",
+    "properties": {
+      "order_id": "12345",
+      "name": "frappe",
+      "revenue": 2999
+    }
+  },
+  "output": {
+    "items": [{
+      "data_type": "event",
+      "method": "post",
+      "data": {
+        "event_name": "Went to Starbucks",
+        "user_id": "hankim813",
+        "created_at": "1451606400",
+        "metadata": {
+          "order_id": "12345",
+          "name": "frappe",
+          "price": {
+            "amount": 299900,
+            "currency": "usd"
+          }
+        }
+      }
+    }]
+  }
+}
