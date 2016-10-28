@@ -1,9 +1,9 @@
 {
   "input": {
     "type": "track",
-    "userId": "hankim813",
+    "userId": "teemo999",
     "timestamp": "2016",
-    "event": "Went to Starbucks",
+    "event": "Do not tilt",
     "properties": {
       "order_id": "12345",
       "name": "frappe",
@@ -15,9 +15,9 @@
       "data_type": "event",
       "method": "post",
       "data": {
-        "event_name": "Went to Starbucks",
-        "user_id": "hankim813",
-        "created_at": "1451606400",
+        "event_name": "Do not tilt",
+        "user_id": "teemo999",
+        "created_at": 1451606400,
         "metadata": {
           "order_id": "12345",
           "name": "frappe",
