@@ -1,9 +1,8 @@
 {
   "input": {
     "type": "track",
-    "userId": "teemo999",
     "timestamp": "2016",
-    "event": "Do not tilt",
+    "event": "Watched Rick and Morty",
     "properties": {
       "order_id": "12345",
       "name": "frappe",
@@ -15,8 +14,7 @@
       "data_type": "event",
       "method": "post",
       "data": {
-        "event_name": "Do not tilt",
-        "user_id": "teemo999",
+        "event_name": "Watched Rick and Morty",
         "created_at": 1451606400,
         "metadata": {
           "order_id": "12345",

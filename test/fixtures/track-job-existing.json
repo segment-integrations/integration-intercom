@@ -1,0 +1,30 @@
+{
+  "input": {
+    "type": "track",
+    "timestamp": "2016",
+    "event": "All your base belongs to us",
+    "properties": {
+      "order_id": "12345",
+      "name": "frappe",
+      "revenue": 2999
+    }
+  },
+  "output": {
+    "items": [{
+      "data_type": "event",
+      "method": "post",
+      "data": {
+        "event_name": "All your base belongs to us",
+        "created_at": 1451606400,
+        "metadata": {
+          "order_id": "12345",
+          "name": "frappe",
+          "price": {
+            "amount": 299900,
+            "currency": "usd"
+          }
+        }
+      }
+    }]
+  }
+}
