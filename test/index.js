@@ -337,24 +337,25 @@ describe('Intercom', function(){
 
           // Modify valid jobId stored in redis to be invalid
           var jobKey = [settings.appId, 'jobs', userId].join(':');
-          intercom.redis().set(jobKey, 'garbage_id');
+          intercom.redis().set(jobKey, 'garbage_id', function(err, ok){
+            if (err) done(err);
+            var bulkRequests = test
+              .requests(4) // add the identify request from beforeEach
+              .set(settings)
+              .track(json.input);
 
-          var bulkRequests = test
-            .requests(4) // add the identify request from beforeEach
-            .set(settings)
-            .track(json.input);
+            // First Request
+            bulkRequests
+              .request(2)
+              .expects(500); // TODO: is this expected? Why is this not 4xx?
 
-          // First Request
-          bulkRequests
-            .request(2)
-            .expects(500); // TODO: is this expected? Why is this not 4xx?
-
-          // Retry by creating new job
-          bulkRequests
-            .request(3)
-            .sends(json.output)
-            .expects(200)
-            .end(done);
+            // Retry by creating new job
+            bulkRequests
+              .request(3)
+              .sends(json.output)
+              .expects(200)
+              .end(done);
+          });
         });
       });
     });
