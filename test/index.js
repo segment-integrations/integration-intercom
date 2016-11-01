@@ -332,6 +332,7 @@ describe('Intercom', function(){
         userId: userId,
         traits: { created: '2016' }
       };
+
       test
         .request(0)
         .set(settings)
