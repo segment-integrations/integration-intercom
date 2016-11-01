@@ -1,0 +1,26 @@
+{
+  "input": {
+    "type": "group",
+    "groupId": "backtothemoon",
+    "timestamp": "2016",
+    "traits": {
+      "name": "NASA",
+      "createdAt": "2014-03-11T09:46:09.000Z"
+    }
+  },
+  "output": {
+    "items": [{
+      "method": "post",
+      "data_type": "user",
+      "data": {
+        "companies": [{
+          "remote_created_at": 1394531169,
+          "company_id": "backtothemoon",
+          "name": "NASA",
+          "custom_attributes": {}
+        }]
+      }
+    }]
+  }
+}
+

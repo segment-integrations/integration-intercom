@@ -2,12 +2,11 @@
   "input": {
     "type": "group",
     "groupId": "0ba10cd6f6a6f654dbacbeee71cdf235",
-    "userId": "hankim813",
     "timestamp": "2016",
     "traits": {
       "name": "Teemo Industries",
       "plan": "VIP",
-      "monthlySpend": "99",
+      "monthlySpend": "100",
       "customTrait": "suh dude",
       "createdAt": "2014-03-11T09:46:09.000Z"
     }
@@ -17,13 +16,12 @@
       "method": "post",
       "data_type": "user",
       "data": {
-        "user_id": "hankim813",
         "companies": [{
           "remote_created_at": 1394531169,
           "company_id": "0ba10cd6f6a6f654dbacbeee71cdf235",
           "name": "Teemo Industries",
           "plan": "VIP",
-          "monthly_spend": "99",
+          "monthly_spend": "100",
           "custom_attributes": {
             "customTrait": "suh dude"
           }
