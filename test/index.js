@@ -199,56 +199,100 @@ describe('Intercom', function(){
   });
 
   describe('.group()', function(){
-    it('should be able to group correctly', function(done){
-      var group = test.fixture('group-basic');
-      test.group(group.input);
-      test.requests(2);
+    // Create one persistent unique user to properly test locking logic
+    // Also declare jobId for later tests
+    var userId;
+    var jobId;
+    before(function(){
+      userId = uid();
+    });
+
+    it('should create a new job for group', function(done){
+      var json = test.fixture('group-job-new');
+      json.input.userId = userId;
+      json.output.items[0].data.user_id = userId;
+
       test
         .set(settings)
-        .request(0)
-        .sends(group.output)
-        .expects(200);
+        .group(json.input)
+        .sends(json.output)
+        .expects(200)
+        .end(function(err, res){
+          if (err) return err;
+          // save jobId for later tests
+          jobId = res[0].res.body.id;
+          done();
+        });
+    });
 
-      var input = test.fixture('group-basic').input;
-      input.traits.created_at = time(new Date(input.traits.created_at));
-
-      var name = input.traits.name;
-      delete input.traits.name;
-
-      var payload = {};
-      payload.user_id = input.userId;
-      payload.last_request_at = time(input.timestamp);
-      payload.companies = [{
-        company_id: input.groupId,
-        custom_attributes: input.traits,
-        name: name,
-        remote_created_at: input.traits.created_at
-      }];
-
-      payload.custom_attributes = {
-        id: input.userId
-      };
+    it('should add to job if already exists', function(done){
+      var json = test.fixture('group-job-existing');
+      json.input.userId = userId;
+      json.output.items[0].data.user_id = userId;
+      json.output.job = { id: jobId };
 
       test
-        .request(1)
-        .sends(payload)
-        .expects(200);
-
-      test.end(done);
-    })
+        .set(settings)
+        .group(json.input)
+        .sends(json.output)
+        .expects(200)
+        .end(done);
+    });
 
     it('should work with .created_at', function(done){
-      var traits = { created_at: 'Jan 1, 2000 3:32:33 PM', name: 'old company' };
-      var group = helpers.group({ traits: traits, groupId: 'a5322d6' });
-      delete group.obj.traits.created;
-      intercom.group(group, done);
-    })
+      var json = test.fixture('group-job-created_at');
+      json.input.userId = userId;
+      json.output.items[0].data.user_id = userId;
+      json.output.job = { id: jobId };
 
-    it('should work with .created', function(done){
-      var traits = { created: 'Jan 1, 2014 3:32:33 PM', name: 'new company' };
-      var group = helpers.group({ traits: traits, groupId: 'e186e5de' });
-      intercom.group(group, done);
-    })
+      test
+        .set(settings)
+        .group(json.input)
+        .sends(json.output)
+        .expects(200)
+        .end(done);
+    });
+
+    it('should work with .createdAt', function(done){
+      var json = test.fixture('group-job-createdAt');
+      json.input.userId = userId;
+      json.output.items[0].data.user_id = userId;
+      json.output.job = { id: jobId };
+
+      test
+        .set(settings)
+        .group(json.input)
+        .sends(json.output)
+        .expects(200)
+        .end(done);
+    });
+
+    it('should just create a new job if adding to a job fails', function(done){
+      var json = test.fixture('group-job-existing');
+      json.input.userId = userId;
+      json.output.items[0].data.user_id = userId;
+
+      // Modify valid jobId stored in redis to be invalid
+      var jobKey = [settings.appId, 'jobs', userId].join(':');
+      intercom.redis().set(jobKey, 'garbage_id');
+
+      var bulkRequests = test
+        .requests(2)
+        .set(settings)
+        .group(json.input);
+
+      // First Request
+      bulkRequests
+        .request(0)
+        .expects(500); // TODO: is this expected? Why is this not 4xx?
+
+      // Retry by creating new job
+      bulkRequests
+        .request(1)
+        .sends(json.output)
+        .expects(200)
+        .end(done);
+    });
   })
 
   describe('.track()', function(){

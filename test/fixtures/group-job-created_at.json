@@ -1,0 +1,28 @@
+{
+  "input": {
+    "type": "group",
+    "groupId": "RIPvine",
+    "userId": "hankim813",
+    "timestamp": "2016",
+    "traits": {
+      "name": "Vine",
+      "created_at": "2014-03-11T09:46:09.000Z"
+    }
+  },
+  "output": {
+    "items": [{
+      "method": "post",
+      "data_type": "user",
+      "data": {
+        "user_id": "hankim813",
+        "companies": [{
+          "remote_created_at": 1394531169,
+          "company_id": "RIPvine",
+          "name": "Vine",
+          "custom_attributes": {}
+        }]
+      }
+    }]
+  }
+}
+
