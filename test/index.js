@@ -200,98 +200,120 @@ describe('Intercom', function(){
 
   describe('.group()', function(){
     // Create one persistent unique user to properly test locking logic
-    // Also declare jobId for later tests
+    // And prevent tests failing because key locked from previous test runs
+    // Allows us to run make test more than once within 15 minutes.
     var userId;
-    var jobId;
-    before(function(){
+    beforeEach(function(){
       userId = uid();
     });
 
-    it('should create a new job for group', function(done){
-      var json = test.fixture('group-job-new');
-      json.input.userId = userId;
-      json.output.items[0].data.user_id = userId;
+    describe('#new job', function(){
+      it('should create a new job for group', function(done){
+        var json = test.fixture('group-job-new');
+        json.input.userId = userId;
+        json.output.items[0].data.user_id = userId;
 
-      test
-        .set(settings)
-        .group(json.input)
-        .sends(json.output)
-        .expects(200)
-        .end(function(err, res){
-          if (err) return err;
-          // save jobId for later tests
-          jobId = res[0].res.body.id;
-          done();
+        test
+          .set(settings)
+          .group(json.input)
+          .sends(json.output)
+          .expects(200)
+          .end(done);
+      });
+
+      it('should work with .created_at', function(done){
+        var json = test.fixture('group-job-created_at');
+        json.input.userId = userId;
+        json.output.items[0].data.user_id = userId;
+
+        test
+          .set(settings)
+          .group(json.input)
+          .sends(json.output)
+          .expects(200)
+          .end(done);
+      });
+
+      it('should work with .createdAt', function(done){
+        var json = test.fixture('group-job-createdAt');
+        json.input.userId = userId;
+        json.output.items[0].data.user_id = userId;
+
+        test
+          .set(settings)
+          .group(json.input)
+          .sends(json.output)
+          .expects(200)
+          .end(done);
+      });
+    });
+
+    describe('#job logic', function(){
+      var jobId;
+
+      beforeEach(function(done){
+        // Make the job first to so we can test against a specific jobId
+        var json = test.fixture('group-job-new');
+        json.input.userId = userId;
+        json.output.items[0].data.user_id = userId;
+
+        test
+          .request(0)
+          .set(settings)
+          .group(json.input)
+          .sends(json.output)
+          .expects(200)
+          .end(function(err, res){
+            if (err) return done(err);
+            jobId = res[0].res.body.id;
+            done();
+          });
+      });
+
+      it('should add to job if already exists', function(done){
+        var jobKey = [settings.appId, 'jobs', 'companies', userId].join(':');
+        var json = test.fixture('group-job-existing');
+        json.input.userId = userId;
+        json.output.items[0].data.user_id = userId;
+        json.output.job = { id: jobId };
+
+        test
+          .request(1) // account for test in beforeEach
+          .set(settings)
+          .group(json.input)
+          .sends(json.output)
+          .expects(200)
+          .end(done);
+      });
+
+      it('should just create a new job if adding to a job fails', function(done){
+        var json = test.fixture('group-job-existing');
+        json.input.userId = userId;
+        json.output.items[0].data.user_id = userId;
+
+        // Modify valid jobId stored in redis to be invalid
+        var jobKey = [settings.appId, 'jobs', 'users', userId].join(':');
+        intercom.redis().set(jobKey, 'garbage_id', function(err, ok){
+          if (err) return done(err);
+
+          var bulkRequests = test
+            .requests(3)
+            .set(settings)
+            .group(json.input);
+
+          // Request for garbage_id
+          bulkRequests
+            .request(1)
+            .expects(500); // TODO: is this expected? Why is this not 4xx?
+
+          // Retry by creating new job
+          bulkRequests
+            .request(2)
+            .sends(json.output)
+            .expects(200)
+            .end(done);
         });
-    });
-
-    it('should add to job if already exists', function(done){
-      var json = test.fixture('group-job-existing');
-      json.input.userId = userId;
-      json.output.items[0].data.user_id = userId;
-      json.output.job = { id: jobId };
-
-      test
-        .set(settings)
-        .group(json.input)
-        .sends(json.output)
-        .expects(200)
-        .end(done);
-    });
-
-    it('should work with .created_at', function(done){
-      var json = test.fixture('group-job-created_at');
-      json.input.userId = userId;
-      json.output.items[0].data.user_id = userId;
-      json.output.job = { id: jobId };
-
-      test
-        .set(settings)
-        .group(json.input)
-        .sends(json.output)
-        .expects(200)
-        .end(done);
-    });
-
-    it('should work with .createdAt', function(done){
-      var json = test.fixture('group-job-createdAt');
-      json.input.userId = userId;
-      json.output.items[0].data.user_id = userId;
-      json.output.job = { id: jobId };
-
-      test
-        .set(settings)
-        .group(json.input)
-        .sends(json.output)
-        .expects(200)
-        .end(done);
-    });
-
-    it('should just create a new job if adding to a job fails', function(done){
-      var json = test.fixture('group-job-existing');
-      json.input.userId = userId;
-      json.output.items[0].data.user_id = userId;
-
-      // Modify valid jobId stored in redis to be invalid
-      var jobKey = [settings.appId, 'jobs', userId].join(':');
-      intercom.redis().set(jobKey, 'garbage_id');
-
-      var bulkRequests = test
-        .requests(2)
-        .set(settings)
-        .group(json.input);
-
-      // First Request
-      bulkRequests
-        .request(0)
-        .expects(500); // TODO: is this expected? Why is this not 4xx?
-
-      // Retry by creating new job
-      bulkRequests
-        .request(1)
-        .sends(json.output)
-        .expects(200)
-        .end(done);
+      });
     });
   })
 
@@ -380,7 +402,7 @@ describe('Intercom', function(){
           json.output.items[0].data.user_id = userId;
 
           // Modify valid jobId stored in redis to be invalid
-          var jobKey = [settings.appId, 'jobs', userId].join(':');
+          var jobKey = [settings.appId, 'jobs', 'events', userId].join(':');
           intercom.redis().set(jobKey, 'garbage_id', function(err, ok){
             if (err) return done(err);
             var bulkRequests = test
@@ -388,7 +410,7 @@ describe('Intercom', function(){
               .set(settings)
               .track(json.input);
 
-            // First Request
+            // Request for garbage_id
             bulkRequests
               .request(2)
               .expects(500); // TODO: is this expected? Why is this not 4xx?
