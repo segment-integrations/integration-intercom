@@ -338,7 +338,7 @@ describe('Intercom', function(){
           // Modify valid jobId stored in redis to be invalid
           var jobKey = [settings.appId, 'jobs', userId].join(':');
           intercom.redis().set(jobKey, 'garbage_id', function(err, ok){
-            if (err) done(err);
+            if (err) return done(err);
             var bulkRequests = test
               .requests(4) // add the identify request from beforeEach
               .set(settings)
