@@ -217,7 +217,7 @@ describe('Intercom', function(){
           .set(settings)
           .group(json.input)
           .sends(json.output)
-          .expects(200)
+          .expects(202)
           .end(done);
       });
 
@@ -230,7 +230,7 @@ describe('Intercom', function(){
           .set(settings)
           .group(json.input)
           .sends(json.output)
-          .expects(200)
+          .expects(202)
           .end(done);
       });
 
@@ -243,7 +243,7 @@ describe('Intercom', function(){
           .set(settings)
           .group(json.input)
           .sends(json.output)
-          .expects(200)
+          .expects(202)
           .end(done);
       });
     });
@@ -262,7 +262,7 @@ describe('Intercom', function(){
           .set(settings)
           .group(json.input)
           .sends(json.output)
-          .expects(200)
+          .expects(202)
           .end(function(err, res){
             if (err) return done(err);
             jobId = res[0].res.body.id;
@@ -282,7 +282,7 @@ describe('Intercom', function(){
           .set(settings)
           .group(json.input)
           .sends(json.output)
-          .expects(200)
+          .expects(202)
           .end(done);
       });
 
@@ -304,13 +304,13 @@ describe('Intercom', function(){
           // Request for garbage_id
           bulkRequests
             .request(1)
-            .expects(500); // TODO: is this expected? Why is this not 4xx?
+            .expects(500); // This is the expected status code
 
           // Retry by creating new job
           bulkRequests
             .request(2)
             .sends(json.output)
-            .expects(200)
+            .expects(202)
             .end(done);
         });
       });
@@ -352,7 +352,7 @@ describe('Intercom', function(){
           .set(settings)
           .track(json.input)
           .sends(json.output)
-          .expects(200)
+          .expects(202)
           .end(done);
       });
     });
@@ -371,7 +371,7 @@ describe('Intercom', function(){
           .set(settings)
           .track(json.input)
           .sends(json.output)
-          .expects(200)
+          .expects(202)
           .end(function(err, res){
             if (err) return done(err);
             jobId = res[0].res.body.id;
@@ -391,7 +391,7 @@ describe('Intercom', function(){
             .set(settings)
             .track(json.input)
             .sends(json.output)
-            .expects(200)
+            .expects(202)
             .end(done);
         });
       });
@@ -414,13 +414,13 @@ describe('Intercom', function(){
             // Request for garbage_id
             bulkRequests
               .request(2)
-              .expects(500); // TODO: is this expected? Why is this not 4xx?
+              .expects(500); // This is the expected error status code
 
             // Retry by creating new job
             bulkRequests
               .request(3)
               .sends(json.output)
-              .expects(200)
+              .expects(202)
               .end(done);
           });
         });
