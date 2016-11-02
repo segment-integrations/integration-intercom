@@ -21,7 +21,7 @@
           "name": "frappe",
           "price": {
             "amount": 299900,
-            "currency": "usd"
+            "currency": "USD"
           }
         }
       }

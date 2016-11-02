@@ -1,0 +1,35 @@
+{
+  "input": {
+    "type": "identify",
+    "userId": "nesty1818",
+    "timestamp": "2014",
+    "traits": {
+      "created": "2014-01-01",
+      "email": "nest@quick.com",
+      "firstName": "nest",
+      "lastName": "quick",
+      "nested": { "foo": "bar", "ahoy": { "okay": "hello" }},
+      "array": ["yo", "hello", { "yolo": "hi" }]
+    }
+  },
+  "output": {
+    "user_id": "nesty1818",
+    "email": "nest@quick.com",
+    "last_request_at": 1388534400,
+    "remote_created_at": 1388534400,
+    "name": "nest quick",
+    "custom_attributes": {
+      "created_at": 1388534400,
+      "email": "nest@quick.com",
+      "firstName": "nest",
+      "lastName": "quick",
+      "id": "nesty1818",
+      "nested.foo": "bar",
+      "nested.ahoy.okay": "hello",
+      "array.0": "yo",
+      "array.1": "hello",
+      "array.2.yolo": "hi"
+    }
+  }
+}
+

@@ -121,17 +121,29 @@ describe('Intercom', function(){
       it('should update unsubscribed_from_emails with unsubscribedFromEmails when supplied', function(){
         test.maps('identify-unsubscribed-from-emails');
       });
+
+      it('should map nested identify', function(){
+        test.maps('identify-nested');
+      });
     });
 
     describe('group', function(){
       it('should map basic group', function(){
-        test.maps('group-basic');
+        test.maps('group-nested');
+      });
+
+      it('should map nested group', function(){
+        test.maps('group-nested');
       });
     });
 
     describe('track', function(){
       it('should map basic track', function(){
         test.maps('track-job-new');
+      });
+
+      it('should map nested track', function(){
+        test.maps('track-nested');
       });
     });
   });
@@ -160,6 +172,17 @@ describe('Intercom', function(){
         .set(settings)
         .identify(msg)
         .sends(payload)
+        .expects(200)
+        .end(done);
+    });
+
+    it('should still send identify with nested traits', function(done){
+      var json = test.fixture('identify-nested');
+
+      test
+        .set(settings)
+        .identify(json.input)
+        .sends(json.output)
         .expects(200)
         .end(done);
     });
@@ -210,6 +233,19 @@ describe('Intercom', function(){
     describe('#new job', function(){
       it('should create a new job for group', function(done){
         var json = test.fixture('group-job-new');
+        json.input.userId = userId;
+        json.output.items[0].data.user_id = userId;
+
+        test
+          .set(settings)
+          .group(json.input)
+          .sends(json.output)
+          .expects(202)
+          .end(done);
+      });
+
+      it('should create a new job for group with nested traits', function(done){
+        var json = test.fixture('group-nested');
         json.input.userId = userId;
         json.output.items[0].data.user_id = userId;
 
@@ -343,6 +379,20 @@ describe('Intercom', function(){
     describe('#new job', function(){
       it('should create new job for track', function(done){
         var json = test.fixture('track-job-new');
+        json.input.userId = userId;
+        json.output.items[0].data.user_id = userId;
+
+        test
+          .request(1) // second req after beforeEach
+          .set(settings)
+          .track(json.input)
+          .sends(json.output)
+          .expects(202)
+          .end(done);
+      });
+
+      it('should create new job for track with nested props', function(done){
+        var json = test.fixture('track-nested');
         json.input.userId = userId;
         json.output.items[0].data.user_id = userId;
 

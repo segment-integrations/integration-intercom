@@ -4,9 +4,8 @@
     "timestamp": "2016",
     "event": "Watched Rick and Morty",
     "properties": {
-      "order_id": "12345",
-      "name": "frappe",
-      "revenue": 2999
+      "nested": { "foo": "bar", "ahoy": { "okay": "hello" }},
+      "array": ["yo", "hello", { "yolo": "hi" }]
     }
   },
   "output": {
@@ -17,14 +16,14 @@
         "event_name": "Watched Rick and Morty",
         "created_at": 1451606400,
         "metadata": {
-          "order_id": "12345",
-          "name": "frappe",
-          "price": {
-            "amount": 299900,
-            "currency": "USD"
-          }
+          "nested.foo": "bar",
+          "nested.ahoy.okay": "hello",
+          "array.0": "yo",
+          "array.1": "hello",
+          "array.2.yolo": "hi"
         }
       }
     }]
   }
 }
+
