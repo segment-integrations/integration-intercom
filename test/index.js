@@ -271,7 +271,6 @@ describe('Intercom', function(){
       });
 
       it('should add to job if already exists', function(done){
-        var jobKey = [settings.appId, 'jobs', 'companies', userId].join(':');
         var json = test.fixture('group-job-existing');
         json.input.userId = userId;
         json.output.items[0].data.user_id = userId;
