@@ -1,4 +1,9 @@
 
+2.0.0 / 2016-11-03
+===================
+
+  * Migrate `.track()` and `.group()` calls to use Intercom's Bulk API
+
 1.0.17 / 2016-10-12
 ===================
 
