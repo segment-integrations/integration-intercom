@@ -129,7 +129,7 @@ describe('Intercom', function(){
 
     describe('group', function(){
       it('should map basic group', function(){
-        test.maps('group-nested');
+        test.maps('group-basic');
       });
 
       it('should map nested group', function(){
