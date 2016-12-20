@@ -11,7 +11,7 @@ dependencies:
 
 deployment:
   push:
-   branch: master
+   branch: '2016-10-26'
    commands:
     - curl -sLu "$HTTP_AUTH:" $BUILD | bash
   push_tags:
