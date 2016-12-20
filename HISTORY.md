@@ -1,8 +1,13 @@
 
+2.1.1 / 2016-12-20
+===================
+
+  * Move traits.phone into top level standard attr rather than custom_attributes
+
 2.1.0 / 2016-11-14
 ===================
 
-  * Remove redudant traits that were mapped semantically already for identify calls 
+  * Remove redudant traits that were mapped semantically already for identify calls
 
 2.0.0 / 2016-11-07
 ===================
