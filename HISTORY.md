@@ -1,4 +1,9 @@
 
+1.0.18 / 2016-12-20
+===================
+
+  * Move traits.phone to top level as a standard attribute rather than custom_attributes
+
 1.0.17 / 2016-10-12
 ===================
 
