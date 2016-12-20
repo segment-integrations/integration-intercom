@@ -106,6 +106,10 @@ describe('Intercom', function(){
         test.maps('identify-company');
       });
 
+      it('should map phone', function(){
+        test.maps('identify-phone');
+      });
+
       it('should map companies with remove', function(){
         test.maps('identify-companies-remove');
       });
@@ -154,6 +158,7 @@ describe('Intercom', function(){
 
       var traits = intercom.formatTraits(msg.traits());
       delete traits.company;
+      delete traits.phone;
 
       payload.user_id = msg.userId();
       payload.remote_created_at = time(msg.created());
@@ -161,6 +166,7 @@ describe('Intercom', function(){
       payload.last_seen_ip = msg.ip();
       payload.email = msg.email();
       payload.name = msg.name();
+      payload.phone = msg.phone();
       payload.custom_attributes = traits;
       payload.companies = [{
         company_id: hash('Segment.io'),
@@ -192,6 +198,17 @@ describe('Intercom', function(){
         should.not.exist(err);
         done();
       });
+    });
+
+    it('should send phone properly', function(done){
+      var json = test.fixture('identify-phone');
+
+      test
+        .set(settings)
+        .identify(json.input)
+        .sends(json.output)
+        .expects(200)
+        .end(done);
     });
 
     it('should send the ip address', function(done){
