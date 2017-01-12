@@ -1,6 +1,6 @@
 {
   "name": "integration-intercom",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "integration-version": "2016-11-07",
   "private": true,
   "description": "Intercom server-side integration",

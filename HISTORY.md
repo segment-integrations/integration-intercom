@@ -1,4 +1,9 @@
 
+2.1.2 / 2017-01-05
+===================
+
+  * Handle error in case of error from Intercom API 
+
 2.1.1 / 2016-12-20
 ===================
 
