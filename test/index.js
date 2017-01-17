@@ -197,7 +197,7 @@ describe('Intercom', function(){
     });
 
     it('should selectively stringify, flatten, or drop traits', function(done){
-      intercom.settings.blacklist = {
+      intercom.settings.blacklisted = {
         stringifyMe: 'stringify',
         dropMe: 'drop'
       };
