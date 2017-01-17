@@ -1,0 +1,29 @@
+{
+  "input": {
+    "type": "track",
+    "timestamp": "2017",
+    "event": "Watched Rick and Morty",
+    "properties": {
+      "dropMe": { "foo": "bar", "ahoy": { "okay": "hello" }},
+      "stringifyMe": [{ "a": "b" }],
+      "array": ["yo", "hello", { "yolo": "hi" }]
+    }
+  },
+  "output": {
+    "items": [{
+      "data_type": "event",
+      "method": "post",
+      "data": {
+        "event_name": "Watched Rick and Morty",
+        "created_at": 1483228800,
+        "metadata": {
+          "stringifyMe": "[{\"a\":\"b\"}]",
+          "array.0": "yo",
+          "array.1": "hello",
+          "array.2.yolo": "hi"
+        }
+      }
+    }]
+  }
+}
+

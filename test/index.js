@@ -30,7 +30,7 @@ describe('Intercom', function(){
       appId: 'fcxywseo',
       apiKey: '9d068fa090d38be4c715b669b3f1370f76ac5306',
       collectContext: false,
-      blacklist: {
+      blacklisted: {
         stringifyMe: 'stringify',
         dropMe: 'drop'
       }
@@ -292,6 +292,19 @@ describe('Intercom', function(){
           .end(done);
       });
 
+      it('should selectively stringify, flatten, or drop traits', function(done){
+        var json = test.fixture('group-blacklist');
+        json.input.userId = userId;
+        json.output.items[0].data.user_id = userId;
+
+        test
+          .set(settings)
+          .group(json.input)
+          .sends(json.output)
+          .expects(202)
+          .end(done);
+      });
+
       it('should work with .created_at', function(done){
         var json = test.fixture('group-job-created_at');
         json.input.userId = userId;
@@ -428,6 +441,20 @@ describe('Intercom', function(){
 
       it('should create new job for track with nested props', function(done){
         var json = test.fixture('track-nested');
+        json.input.userId = userId;
+        json.output.items[0].data.user_id = userId;
+
+        test
+          .request(1) // second req after beforeEach
+          .set(settings)
+          .track(json.input)
+          .sends(json.output)
+          .expects(202)
+          .end(done);
+      });
+
+      it('should selectively stringify, flatten, or drop traits', function(done){
+        var json = test.fixture('track-blacklist');
         json.input.userId = userId;
         json.output.items[0].data.user_id = userId;
 

@@ -1,0 +1,34 @@
+{
+  "input": {
+    "type": "group",
+    "groupId": "0ba10cd6f6a6f654dbacbeee71cdf235",
+    "userId": "hankim813",
+    "timestamp": "2017",
+    "traits": {
+      "name": "Teemo Industries",
+      "dropMe": { "foo": "bar", "ahoy": { "okay": "hello" }},
+      "stringifyMe": [{ "a": "b" }],
+      "array": ["yo", "hello", { "yolo": "hi" }]
+    }
+  },
+  "output": {
+    "items": [{
+      "method": "post",
+      "data_type": "user",
+      "data": {
+        "user_id": "hankim813",
+        "companies": [{
+          "company_id": "0ba10cd6f6a6f654dbacbeee71cdf235",
+          "name": "Teemo Industries",
+          "custom_attributes": {
+            "stringifyMe": "[{\"a\":\"b\"}]",
+            "array.0": "yo",
+            "array.1": "hello",
+            "array.2.yolo": "hi"
+          }
+        }]
+      }
+    }]
+  }
+}
+
