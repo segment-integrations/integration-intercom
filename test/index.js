@@ -29,7 +29,11 @@ describe('Intercom', function(){
     settings = {
       appId: 'fcxywseo',
       apiKey: '9d068fa090d38be4c715b669b3f1370f76ac5306',
-      collectContext: false
+      collectContext: false,
+      blacklist: {
+        stringifyMe: 'stringify',
+        dropMe: 'drop'
+      }
     };
     intercom = new Intercom(settings);
     test = Test(intercom, __dirname);
@@ -183,6 +187,21 @@ describe('Intercom', function(){
 
     it('should still send identify with nested traits', function(done){
       var json = test.fixture('identify-nested');
+
+      test
+        .set(settings)
+        .identify(json.input)
+        .sends(json.output)
+        .expects(200)
+        .end(done);
+    });
+
+    it('should selectively stringify, flatten, or drop traits', function(done){
+      intercom.settings.blacklist = {
+        stringifyMe: 'stringify',
+        dropMe: 'drop'
+      };
+      var json = test.fixture('identify-blacklist');
 
       test
         .set(settings)

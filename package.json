@@ -16,6 +16,7 @@
   "dependencies": {
     "@ndhoule/each": "^2.0.1",
     "@ndhoule/extend": "^2.0.0",
+    "@ndhoule/foldl": "^2.0.1",
     "@segment/fmt": "^1.0.0",
     "batch": "^0.5.1",
     "extend": "^2.0.0",
