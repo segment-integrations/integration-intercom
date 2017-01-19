@@ -1,0 +1,16 @@
+{
+  "input": {
+    "type": "identify",
+    "userId": "nesty1820",
+    "timestamp": "2017",
+    "traits": {
+      "foo": ["yo", "hello", { "yolo": "hi" }]
+    }
+  },
+  "output": {
+    "user_id": "nesty1820",
+    "last_request_at": 1483228800,
+    "custom_attributes": {}
+  }
+}
+

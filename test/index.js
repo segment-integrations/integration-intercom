@@ -33,7 +33,8 @@ describe('Intercom', function(){
       blacklisted: {
         stringifyMe: 'stringify',
         dropMe: 'drop'
-      }
+      },
+      defaultMethod: 'flatten'
     };
     intercom = new Intercom(settings);
     test = Test(intercom, __dirname);
@@ -203,6 +204,47 @@ describe('Intercom', function(){
       };
       var json = test.fixture('identify-blacklist');
 
+      test
+        .set(settings)
+        .identify(json.input)
+        .sends(json.output)
+        .expects(200)
+        .end(done);
+    });
+
+    it('should let you set default method for handling nested objects', function(done){
+      intercom.settings.defaultMethod = 'stringify';
+      var json = test.fixture('identify-default-method');
+      json.output.custom_attributes = {
+        foo: '["yo","hello",{"yolo":"hi"}]',
+        id: 'nesty1820'
+      };
+
+      // stringify
+      test
+        .set(settings)
+        .identify(json.input)
+        .sends(json.output)
+        .expects(200);
+
+      // drop
+      intercom.settings.defaultMethod = 'drop';
+      json.output.custom_attributes = {};
+
+      test
+        .set(settings)
+        .identify(json.input)
+        .sends(json.output)
+        .expects(200);
+
+      // flatten
+      intercom.settings.defaultMethod = 'flatten';
+      json.output.custom_attributes = {
+        'foo.0': 'yo',
+        'foo.1': 'hello',
+        'foo.2.yolo': 'hi',
+        id: 'nesty1820'
+      }
       test
         .set(settings)
         .identify(json.input)
