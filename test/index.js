@@ -121,6 +121,10 @@ describe('Intercom', function(){
         test.maps('identify-last-request-at');
       });
 
+      it('should update last_seen_user_agent with userAgent when supplied', function(){
+        test.maps('identify-last-seen-user-agent');
+      });
+
       it('should update unsubscribed_from_emails with unsubscribedFromEmails when supplied', function(){
         test.maps('identify-unsubscribed-from-emails');
       });
@@ -151,6 +155,7 @@ describe('Intercom', function(){
       payload.remote_created_at = time(msg.created());
       payload.last_request_at = time(msg.timestamp());
       payload.last_seen_ip = msg.ip();
+      payload.last_seen_user_agent = msg.userAgent();
       payload.email = msg.email();
       payload.name = msg.name();
       payload.phone = msg.phone();
