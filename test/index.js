@@ -30,10 +30,22 @@ describe('Intercom', function(){
       appId: 'fcxywseo',
       apiKey: '9d068fa090d38be4c715b669b3f1370f76ac5306',
       collectContext: false,
-      blacklisted: {
-        stringifyMe: 'stringify',
-        dropMe: 'drop'
-      },
+      blacklisted: [
+        {
+          key: 'someCustomProp',
+          value: {
+            propertyName: 'someCustomProp',
+            method: 'drop'
+          }
+        },
+        {
+          key: 'bar',
+          value: {
+            propertyName: 'bar',
+            method: 'drop'
+          }
+        }
+      ],
       defaultMethod: 'flatten'
     };
     intercom = new Intercom(settings);
