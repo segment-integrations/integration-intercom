@@ -8,7 +8,8 @@
       "name": "Teemo Industries",
       "dropMe": { "foo": "bar", "ahoy": { "okay": "hello" }},
       "stringifyMe": [{ "a": "b" }],
-      "array": ["yo", "hello", { "yolo": "hi" }]
+      "array": ["yo", "hello", { "yolo": "hi" }],
+      "flattenMe": { "pizza": "cheese", "spongebob": { "patrick": "star" } }
     }
   },
   "output": {
@@ -24,7 +25,9 @@
             "stringifyMe": "[{\"a\":\"b\"}]",
             "array.0": "yo",
             "array.1": "hello",
-            "array.2.yolo": "hi"
+            "array.2.yolo": "hi",
+            "flattenMe.pizza": "cheese",
+            "flattenMe.spongebob.patrick": "star"
           }
         }]
       }
