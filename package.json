@@ -1,6 +1,6 @@
 {
   "name": "integration-intercom",
-  "version": "2.1.2",
+  "version": "2.2.1",
   "integration-version": "2016-11-07",
   "private": true,
   "description": "Intercom server-side integration",
@@ -26,11 +26,16 @@
     "obj-case": "^0.1.1",
     "reject": "0.0.1",
     "segmentio-facade": "^3.0.0",
-    "segmentio-integration": "^5.0.1",
+    "segmentio-integration": "^5.1.0",
     "string-hash": "^1.1.0",
     "unix-time": "^1.0.1"
   },
   "devDependencies": {
+    "@segment/eslint-config": "^3.4.0",
+    "eslint": "^2.13.1",
+    "eslint-plugin-mocha": "^2.2.0",
+    "eslint-plugin-react": "^4.3.0",
+    "eslint-plugin-require-path-exists": "^1.1.5",
     "is": "^2.1.0",
     "isostring": "0.0.1",
     "istanbul": "0.x",

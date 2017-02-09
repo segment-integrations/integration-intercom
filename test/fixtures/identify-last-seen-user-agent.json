@@ -10,29 +10,14 @@
       "lastName": "doe"
     },
     "context": {
-      "ip": "0.0.0.0",
-      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36",
-      "device": {
-        "type": "ios",
-        "manufacturer": "Apple",
-        "model": "iPhone8,2"
-      },
-      "os": {
-        "name": "iPhone OS",
-        "version": "9.3.2"
-      },
-      "app": {
-        "name": "Pokemon Go",
-        "version": "1.1.1"
-      }
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36"
     }
   },
   "output": {
-    "last_seen_ip": "0.0.0.0",
-    "last_seen_user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36",
     "user_id": "user-id",
     "email": "jd@example.com",
     "last_request_at": 1388534400,
+    "last_seen_user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36",
     "remote_created_at": 1388534400,
     "name": "john doe",
     "custom_attributes": {
