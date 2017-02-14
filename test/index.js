@@ -220,32 +220,40 @@ describe('Intercom', function(){
         .end(done);
     });
 
-    it('should let you set default method for handling nested objects', function(done){
-      intercom.settings.defaultMethod = 'stringify';
+    it('should let you set stringify as the default method for handling nested objects', function(done){
+      settings.defaultMethod = 'stringify';
       var json = test.fixture('identify-default-method');
       json.output.custom_attributes = {
         foo: '["yo","hello",{"yolo":"hi"}]',
         id: 'nesty1820'
       };
 
-      // stringify
       test
         .set(settings)
         .identify(json.input)
         .sends(json.output)
-        .expects(200);
+        .expects(200)
+        .end(done);
+      
+    });
 
-      // drop
+    it.only('should let you set drop as the default method for handling nested objects', function(done) {
+      var json = test.fixture('identify-default-method');
       intercom.settings.defaultMethod = 'drop';
-      json.output.custom_attributes = {};
+      json.output.custom_attributes = {
+        id: 'nesty1820'
+      };
 
       test
         .set(settings)
         .identify(json.input)
         .sends(json.output)
-        .expects(200);
+        .expects(200)
+        .end(done);
+    });
 
-      // flatten
+    it('should let you set flatten as the default method for handling nested objects', function(done) {
+      var json = test.fixture('identify-default-method');
       intercom.settings.defaultMethod = 'flatten';
       json.output.custom_attributes = {
         'foo.0': 'yo',
