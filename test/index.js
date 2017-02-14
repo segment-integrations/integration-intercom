@@ -237,7 +237,7 @@ describe('Intercom', function(){
       
     });
 
-    it.only('should let you set drop as the default method for handling nested objects', function(done) {
+    it('should let you set drop as the default method for handling nested objects', function(done) {
       var json = test.fixture('identify-default-method');
       intercom.settings.defaultMethod = 'drop';
       json.output.custom_attributes = {
@@ -260,7 +260,29 @@ describe('Intercom', function(){
         'foo.1': 'hello',
         'foo.2.yolo': 'hi',
         id: 'nesty1820'
-      }
+      };
+
+      test
+        .set(settings)
+        .identify(json.input)
+        .sends(json.output)
+        .expects(200)
+        .end(done);
+    });
+
+    it('should only handle objects with the default method', function(done) {
+      var json = test.fixture('identify-default-method');
+      intercom.settings.defaultMethod = 'drop';
+      json.input.traits = {
+        test_number: 12345,
+        test_string: 'test'
+      };
+      json.output.custom_attributes = {
+        test_number: 12345,
+        test_string: 'test',
+        id: 'nesty1820'
+      };
+
       test
         .set(settings)
         .identify(json.input)
