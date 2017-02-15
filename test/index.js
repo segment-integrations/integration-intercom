@@ -35,7 +35,8 @@ describe('Intercom', function(){
         dropMe: 'drop',
         flattenMe: 'flatten'
       },
-      defaultMethod: 'flatten'
+      defaultMethod: 'flatten',
+      richLinkProperties: []
     };
     intercom = new Intercom(settings);
     test = Test(intercom, __dirname);
@@ -158,6 +159,11 @@ describe('Intercom', function(){
 
       it('should map nested track', function(){
         test.maps('track-nested');
+      });
+
+      it('should send Rich Link as nested object in metadata', function() {
+        settings.richLinkProperties = ['article'];
+        test.maps('track-rich-link');
       });
     });
   });

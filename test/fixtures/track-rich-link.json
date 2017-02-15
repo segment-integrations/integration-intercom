@@ -1,0 +1,29 @@
+{
+  "input": {
+    "type": "track",
+    "timestamp": "2016",
+    "event": "Listened to Rihanna",
+    "properties": {
+      "article": {
+        "url": "www.badgalriri.com",
+        "value": "Work ft. Drake"
+      }
+    }
+  },
+  "output": {
+    "items": [{
+      "data_type": "event",
+      "method": "post",
+      "data": {
+        "event_name": "Listened to Rihanna",
+        "created_at": 1451606400,
+        "metadata": {
+          "article": {
+            "url": "www.badgalriri.com",
+            "value": "Work ft. Drake"
+          }
+        }
+      }
+    }]
+  }
+}

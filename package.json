@@ -23,6 +23,7 @@
     "flat": "2.0.1",
     "is": "^2.1.0",
     "isostring": "0.0.1",
+    "lodash": "^4.17.4",
     "obj-case": "^0.1.1",
     "reject": "0.0.1",
     "segmentio-facade": "^3.0.0",
