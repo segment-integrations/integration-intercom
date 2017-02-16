@@ -14,10 +14,14 @@
     "test": "make test"
   },
   "dependencies": {
+    "@ndhoule/each": "^2.0.1",
+    "@ndhoule/extend": "^2.0.0",
+    "@ndhoule/foldl": "^2.0.1",
     "batch": "^0.5.1",
     "extend": "^2.0.0",
     "is": "^2.1.0",
     "isostring": "0.0.1",
+    "lodash": "^4.17.4",
     "flat": "2.0.1",
     "obj-case": "^0.1.1",
     "segmentio-facade": "^2.0.5",

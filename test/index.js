@@ -28,7 +28,14 @@ describe('Intercom', function(){
     settings = {
       appId: 'a3vy8ufv',
       apiKey: '4ed539b9c0193de8e75bcb00a357cac54db90902',
-      collectContext: false
+      collectContext: false,
+      blacklisted: {
+        stringifyMe: 'stringify',
+        dropMe: 'drop',
+        flattenMe: 'flatten'
+      },
+      defaultMethod: 'flatten',
+      richLinkProperties: []
     };
     intercom = new Intercom(settings);
     test = Test(intercom, __dirname);
@@ -140,6 +147,11 @@ describe('Intercom', function(){
       it('should map basic track', function(){
         test.maps('track-basic');
       });
+
+      it('should send Rich Link as nested object in metadata', function() {
+        settings.richLinkProperties = ['article'];
+        test.maps('track-rich-link');
+      });
     });
   });
 
@@ -217,6 +229,94 @@ describe('Intercom', function(){
         .identify({})
         .error('Unauthorized', done);
     });
+
+    it('should selectively stringify, flatten, or drop traits', function(done){
+      intercom.settings.blacklisted = {
+        stringifyMe: 'stringify',
+        dropMe: 'drop',
+        flattenMe: 'flatten'
+      }
+
+      var json = test.fixture('identify-blacklist');
+
+      test
+        .set(settings)
+        .identify(json.input)
+        .sends(json.output)
+        .expects(200)
+        .end(done);
+    });
+
+    it('should let you set stringify as the default method for handling nested objects', function(done){
+      settings.defaultMethod = 'stringify';
+      var json = test.fixture('identify-default-method');
+      json.output.custom_attributes = {
+        foo: '["yo","hello",{"yolo":"hi"}]',
+        id: 'nesty1820'
+      };
+
+      test
+        .set(settings)
+        .identify(json.input)
+        .sends(json.output)
+        .expects(200)
+        .end(done);
+      
+    });
+
+    it('should let you set drop as the default method for handling nested objects', function(done) {
+      var json = test.fixture('identify-default-method');
+      intercom.settings.defaultMethod = 'drop';
+      json.output.custom_attributes = {
+        id: 'nesty1820'
+      };
+
+      test
+        .set(settings)
+        .identify(json.input)
+        .sends(json.output)
+        .expects(200)
+        .end(done);
+    });
+
+    it('should let you set flatten as the default method for handling nested objects', function(done) {
+      var json = test.fixture('identify-default-method');
+      intercom.settings.defaultMethod = 'flatten';
+      json.output.custom_attributes = {
+        'foo.0': 'yo',
+        'foo.1': 'hello',
+        'foo.2.yolo': 'hi',
+        id: 'nesty1820'
+      };
+
+      test
+        .set(settings)
+        .identify(json.input)
+        .sends(json.output)
+        .expects(200)
+        .end(done);
+    });
+
+    it('should only handle objects with the default method', function(done) {
+      var json = test.fixture('identify-default-method');
+      intercom.settings.defaultMethod = 'drop';
+      json.input.traits = {
+        test_number: 12345,
+        test_string: 'test'
+      };
+      json.output.custom_attributes = {
+        test_number: 12345,
+        test_string: 'test',
+        id: 'nesty1820'
+      };
+
+      test
+        .set(settings)
+        .identify(json.input)
+        .sends(json.output)
+        .expects(200)
+        .end(done);
+    });
   });
 
   describe('.group()', function(){
@@ -263,14 +363,25 @@ describe('Intercom', function(){
       var group = helpers.group({ traits: traits, groupId: 'a5322d6' });
       delete group.obj.traits.created;
       intercom.group(group, done);
-    })
+    });
 
     it('should work with .created', function(done){
       var traits = { created: 'Jan 1, 2014 3:32:33 PM', name: 'new company' };
       var group = helpers.group({ traits: traits, groupId: 'e186e5de' });
       intercom.group(group, done);
-    })
-  })
+    });
+
+    it('should selectively stringify, flatten, or drop traits', function(done){
+      var json = test.fixture('group-blacklist');
+
+      test
+        .set(settings)
+        .group(json.input)
+        .sends(json.output)
+        .expects(200)
+        .end(done);
+    });
+  });
 
   describe('.track()', function(){
     it('should track', function(done){
@@ -288,6 +399,18 @@ describe('Intercom', function(){
         .set({ apiKey: 'x' })
         .track({})
         .error('Unauthorized', done);
+    });
+
+    it('should selectively stringify, flatten, or drop traits', function(done){
+      var json = test.fixture('track-blacklist');
+
+      test
+        .request(1) // second req after beforeEach
+        .set(settings)
+        .track(json.input)
+        .sends(json.output)
+        .expects(202)
+        .end(done);
     });
   });
 });

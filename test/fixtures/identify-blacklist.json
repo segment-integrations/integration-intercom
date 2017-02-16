@@ -1,0 +1,29 @@
+{
+  "input": {
+    "type": "identify",
+    "userId": "nesty1820",
+    "timestamp": "2017",
+    "traits": {
+      "name": "han solo dolo",
+      "stringifyMe": [{ "a": "b" }],
+      "dropMe": { "foo": "bar", "ahoy": { "okay": "hello" }},
+      "flattenMe": { "pizza": "cheese", "spongebob": { "patrick": "star" } },
+      "foo": ["yo", "hello", { "yolo": "hi" }]
+    }
+  },
+  "output": {
+    "user_id": "nesty1820",
+    "last_request_at": 1483228800,
+    "name": "han solo dolo",
+    "custom_attributes": {
+      "name": "han solo dolo",
+      "id": "nesty1820",
+      "stringifyMe": "[{\"a\":\"b\"}]",
+      "foo.0": "yo",
+      "foo.1": "hello",
+      "foo.2.yolo": "hi",
+      "flattenMe.pizza": "cheese",
+      "flattenMe.spongebob.patrick": "star"
+    }
+  }
+}

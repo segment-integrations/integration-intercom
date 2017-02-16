@@ -7,7 +7,11 @@
     "properties": {
       "property": true,
       "email": "jd@example.com",
-      "revenue": 2999
+      "revenue": 2999,
+      "article": {
+        "url": "www.badgalriri.com",
+        "value": "Work ft. Drake"
+      }
     }
   },
   "output": {
@@ -21,6 +25,10 @@
       "price": {
         "amount": 299900,
         "currency": "USD"
+      },
+      "article": {
+        "url": "www.badgalriri.com",
+        "value": "Work ft. Drake"
       }
     }
   }
