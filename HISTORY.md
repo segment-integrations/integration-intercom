@@ -1,4 +1,11 @@
 
+1.1.21 / 2017-02-16
+===================
+
+  * Add option to let customers decide how they would like their custom nested traits to be handled
+  * Fix unsubscribe bug
+  * Add special hanlding for Rich Link
+
 1.0.19 / 2017-02-02
 ===================
 
