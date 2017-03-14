@@ -41,7 +41,7 @@ describe('Intercom V2', function(){
       },
       defaultMethod: 'flatten',
       richLinkProperties: [],
-      isBulkAPIEnabled: false
+      isBulkAPIEnabled: true
     };
     intercom = new Intercom(settings);
     // FIXME: temp hack to get around Intercom's rate limits
@@ -680,7 +680,7 @@ describe('Intercom V1', function(){
       },
       defaultMethod: 'flatten',
       richLinkProperties: [],
-      isBulkAPIEnabled: true
+      isBulkAPIEnabled: false
     };
     intercom = new Intercom(settings);
     // FIXME: temp hack to get around Intercom's rate limits
