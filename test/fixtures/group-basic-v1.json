@@ -1,0 +1,30 @@
+{
+  "input": {
+    "type": "group",
+    "groupId": "0ba10cd6f6a6f654dbacbeee71cdf235",
+    "userId": "user-id",
+    "timestamp": "2014",
+    "traits": {
+      "name": "Company Name",
+      "email": "jd@example.com",
+      "plan": "basic",
+      "monthly_spend": "10",
+      "created_at": "2014-03-11T09:46:09.000Z"
+    }
+  },
+  "output": {
+    "remote_created_at": 1394531169,
+    "company_id": "0ba10cd6f6a6f654dbacbeee71cdf235",
+    "name": "Company Name",
+    "plan": "basic",
+    "monthly_spend": "10",
+    "custom_attributes": {
+      "name": "Company Name",
+      "email": "jd@example.com",
+      "id": "0ba10cd6f6a6f654dbacbeee71cdf235",
+      "plan": "basic",
+      "monthly_spend": "10",
+      "created_at": 1394531169
+    }
+  }
+}

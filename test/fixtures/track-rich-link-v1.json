@@ -1,0 +1,35 @@
+{
+  "input": {
+    "type": "track",
+    "userId": "user-id",
+    "event": "my-event",
+    "timestamp": "2014",
+    "properties": {
+      "property": true,
+      "email": "jd@example.com",
+      "revenue": 2999,
+      "article": {
+        "url": "www.badgalriri.com",
+        "value": "Work ft. Drake"
+      }
+    }
+  },
+  "output": {
+    "created": 1388534400,
+    "event_name": "my-event",
+    "user_id": "user-id",
+    "email": "jd@example.com",
+    "metadata": {
+      "email": "jd@example.com",
+      "property": "true",
+      "price": {
+        "amount": 299900,
+        "currency": "USD"
+      },
+      "article": {
+        "url": "www.badgalriri.com",
+        "value": "Work ft. Drake"
+      }
+    }
+  }
+}

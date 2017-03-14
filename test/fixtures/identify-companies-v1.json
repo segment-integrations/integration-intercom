@@ -1,0 +1,29 @@
+{
+  "input": {
+    "type": "identify",
+    "userId": "user-id",
+    "timestamp": "2014",
+    "traits": {
+      "companies": [{
+        "created": "2014-01-01",
+        "name": "Segment",
+        "id": "123"
+      }]
+    }
+  },
+  "output": {
+    "user_id": "user-id",
+    "last_request_at": 1388534400,
+    "custom_attributes": {
+      "id": "user-id"
+    },
+    "companies": [{
+      "remote_created_at": 1388534400,
+      "custom_attributes": {
+        "created_at": 1388534400
+      },
+      "company_id": "123",
+      "name": "Segment"
+    }]
+  }
+}
