@@ -1,4 +1,9 @@
 
+2.6.0 / 2017-03-13
+==================
+
+  * Merge both legacy 2016-10-26 versioned integration so that we can support both based on setting 
+
 2.5.0 / 2017-03-08
 ==================
 
