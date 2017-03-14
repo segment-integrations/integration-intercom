@@ -44,6 +44,8 @@ describe('Intercom V2', function(){
       isV1Enabled: false
     };
     intercom = new Intercom(settings);
+    // FIXME: temp hack to get around Intercom's rate limits
+    intercom.userAgent = 'not_segment';
     test = Test(intercom, __dirname);
     test.mapper(mapperV2);
     intercom.redis(db);
@@ -681,6 +683,8 @@ describe('Intercom V1', function(){
       isV1Enabled: true
     };
     intercom = new Intercom(settings);
+    // FIXME: temp hack to get around Intercom's rate limits
+    intercom.userAgent = 'not_segment';
     test = Test(intercom, __dirname);
     test.mapper(mapperV1);
     intercom.redis(db);
@@ -975,7 +979,7 @@ describe('Intercom V1', function(){
 
   describe('.group()', function(){
     it('should be able to group correctly', function(done){
-      var group = test.fixture('group-basic');
+      var group = test.fixture('group-basic-v1');
       test.group(group.input);
       test.requests(2);
       test
@@ -984,7 +988,7 @@ describe('Intercom V1', function(){
         .sends(group.output)
         .expects(200);
 
-      var input = test.fixture('group-basic').input;
+      var input = group.input;
       input.traits.created_at = time(new Date(input.traits.created_at));
 
       var name = input.traits.name;
@@ -1055,11 +1059,10 @@ describe('Intercom V1', function(){
         .error('Unauthorized', done);
     });
 
-    it.only('should selectively stringify, flatten, or drop traits', function(done){
+    it('should selectively stringify, flatten, or drop traits', function(done){
       var json = test.fixture('track-blacklist-v1');
 
       test
-        .request(1) // second req after beforeEach
         .set(settings)
         .track(json.input)
         .sends(json.output)

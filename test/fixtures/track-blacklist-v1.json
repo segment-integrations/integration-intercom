@@ -24,7 +24,7 @@
       "property": "true",
       "price": {
         "amount": 299900,
-        "currency": "usd"
+        "currency": "USD"
       },
       "stringifyMe": "[{\"a\":\"b\"}]",
       "array.0": "yo",
