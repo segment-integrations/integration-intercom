@@ -1,4 +1,9 @@
 
+2.6.2 / 2017-03-15
+==================
+
+  * Add temporary custom metrics for intercom migration 
+
 2.6.1 / 2017-03-14
 ==================
 
