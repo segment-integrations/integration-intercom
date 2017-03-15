@@ -17,6 +17,7 @@
     "@ndhoule/foldl": "^2.0.1",
     "@segment/fmt": "^1.0.0",
     "batch": "^0.5.1",
+    "dog-statsy": "^1.1.1",
     "extend": "^2.0.0",
     "flat": "2.0.1",
     "is": "^2.1.0",
