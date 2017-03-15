@@ -1,6 +1,6 @@
 {
   "name": "@segment/integration-intercom",
-  "version": "2.6.2",
+  "version": "2.6.3",
   "description": "Intercom server-side integration",
   "author": "Segment <friends@segment.com>",
   "repository": {
