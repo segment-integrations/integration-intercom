@@ -1,4 +1,9 @@
 
+2.6.3 / 2017-04-05
+==================
+
+  * Apply previous fix for v2 to v1 as well regarding removing redundant traits
+
 2.6.2 / 2017-03-15
 ==================
 
