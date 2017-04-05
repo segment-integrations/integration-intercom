@@ -5,7 +5,7 @@
     "timestamp": "2014",
     "traits": {
       "companies": [{
-        "created": "2014",
+        "created": "2014-01-01",
         "name": "Segment",
         "id": "123",
         "plan": "paid",
