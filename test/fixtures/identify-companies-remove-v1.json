@@ -20,10 +20,7 @@
     },
     "companies": [{
       "remote_created_at": 1388534400,
-      "custom_attributes": {
-        "created_at": 1388534400,
-        "remove": true
-      },
+      "custom_attributes": {},
       "company_id": "123",
       "name": "Segment",
       "remove": true

@@ -205,7 +205,8 @@ describe('Intercom V2', function(){
       payload.custom_attributes = traits;
       payload.companies = [{
         company_id: hash('Segment.io'),
-        name: 'Segment.io'
+        name: 'Segment.io',
+        remote_created_at: time(msg.created())
       }];
 
       test
@@ -832,7 +833,7 @@ describe('Intercom V1', function(){
       payload.custom_attributes = traits;
       payload.companies = [{
         company_id: hash('Segment.io'),
-        custom_attributes: {},
+        remote_created_at: time(msg.created()),
         name: 'Segment.io'
       }];
 
@@ -989,10 +990,14 @@ describe('Intercom V1', function(){
         .expects(200);
 
       var input = group.input;
-      input.traits.created_at = time(new Date(input.traits.created_at));
-
       var name = input.traits.name;
+      var createdAt = input.traits.created_at;
+      var plan = input.traits.plan;
+      var monthlySpend = input.traits.monthly_spend;
       delete input.traits.name;
+      delete input.traits.created_at;
+      delete input.traits.plan;
+      delete input.traits.monthly_spend;
 
       var payload = {};
       payload.user_id = input.userId;
@@ -1000,8 +1005,10 @@ describe('Intercom V1', function(){
       payload.companies = [{
         company_id: input.groupId,
         custom_attributes: input.traits,
+        plan: plan,
+        monthly_spend: monthlySpend,
         name: name,
-        remote_created_at: input.traits.created_at
+        remote_created_at: time(createdAt)
       }];
 
       payload.custom_attributes = {

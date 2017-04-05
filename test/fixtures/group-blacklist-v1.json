@@ -23,12 +23,7 @@
     "plan": "basic",
     "monthly_spend": "10",
     "custom_attributes": {
-      "name": "Company Name",
       "email": "jd@example.com",
-      "id": "0ba10cd6f6a6f654dbacbeee71cdf235",
-      "plan": "basic",
-      "monthly_spend": "10",
-      "created_at": 1394531169,
       "stringifyMe": "[{\"a\":\"b\"}]",
       "array.0": "yo",
       "array.1": "hello",

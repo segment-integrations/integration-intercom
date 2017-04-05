@@ -17,9 +17,7 @@
       "id": "user-id"
     },
     "companies": [{
-      "custom_attributes": {
-        "remove": true
-      },
+      "custom_attributes": {},
       "company_id": 2017828326,
       "name": "Segment",
       "remove": true

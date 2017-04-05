@@ -7,7 +7,9 @@
       "companies": [{
         "created": "2014-01-01",
         "name": "Segment",
-        "id": "123"
+        "id": "123",
+        "plan": "supreme",
+        "monthlySpend": 120
       }]
     }
   },
@@ -19,11 +21,11 @@
     },
     "companies": [{
       "remote_created_at": 1388534400,
-      "custom_attributes": {
-        "created_at": 1388534400
-      },
+      "custom_attributes": {},
       "company_id": "123",
-      "name": "Segment"
+      "name": "Segment",
+      "plan": "supreme",
+      "monthly_spend": 120
     }]
   }
 }
