@@ -783,6 +783,10 @@ describe('Intercom V1', function(){
         test.maps('identify-phone');
       });
 
+      it('should map company without company.name', function(){
+        test.maps('identify-company-bad');
+      });
+
       it('should update last_request_at with lastRequestAt when supplied', function(){
         test.maps('identify-last-request-at');
       });

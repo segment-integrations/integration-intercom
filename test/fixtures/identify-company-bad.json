@@ -1,0 +1,37 @@
+{
+  "input": {
+    "type": "identify",
+    "userId": "hansolodolo",
+    "timestamp": "2016",
+    "traits": {
+      "email": "han@hansolo.com",
+      "phone": "4012229047",
+      "firstName": "han",
+      "lastName": "kim",
+      "companies": [{
+        "created": "2014-01-01",
+        "plan": "supreme",
+        "monthlySpend": 120
+      }]
+    }
+  },
+  "output": {
+    "user_id": "hansolodolo",
+    "email": "han@hansolo.com",
+    "last_request_at": 1451606400,
+    "name": "han kim",
+    "phone": "4012229047",
+    "custom_attributes": {
+      "email": "han@hansolo.com",
+      "firstName": "han",
+      "lastName": "kim",
+      "id": "hansolodolo"
+    },
+    "companies": [{
+      "remote_created_at": 1388534400,
+      "custom_attributes": {},
+      "plan": "supreme",
+      "monthly_spend": 120
+    }]
+  }
+}
