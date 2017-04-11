@@ -16,7 +16,6 @@
     "last_request_at": 1483228800,
     "name": "han solo dolo",
     "custom_attributes": {
-      "name": "han solo dolo",
       "id": "nesty1820",
       "stringifyMe": "[{\"a\":\"b\"}]",
       "foo.0": "yo",
@@ -27,4 +26,3 @@
     }
   }
 }
-

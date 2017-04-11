@@ -193,6 +193,7 @@ describe('Intercom V2', function(){
       var traits = intercom.formatTraits(msg.traits());
       delete traits.company;
       delete traits.phone;
+      delete traits.email;
 
       payload.user_id = msg.userId();
       payload.remote_created_at = time(msg.created());
@@ -825,6 +826,7 @@ describe('Intercom V1', function(){
       var traits = intercom.formatTraits(msg.traits());
       delete traits.company;
       delete traits.phone;
+      delete traits.email;
 
       payload.user_id = msg.userId();
       payload.remote_created_at = time(msg.created());

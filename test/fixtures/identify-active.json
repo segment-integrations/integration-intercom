@@ -20,7 +20,6 @@
     "name": "john doe",
     "custom_attributes": {
       "created_at": 1388534400,
-      "email": "jd@example.com",
       "firstName": "john",
       "lastName": "doe",
       "id": "user-id"
