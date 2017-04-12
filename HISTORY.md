@@ -1,4 +1,9 @@
 
+2.6.5 / 2017-04-11
+==================
+
+  * Stop passing `name` and `email` as custom_attributes
+
 2.6.4 / 2017-04-06
 ==================
 
@@ -12,17 +17,17 @@
 2.6.2 / 2017-03-15
 ==================
 
-  * Add temporary custom metrics for intercom migration 
+  * Add temporary custom metrics for intercom migration
 
 2.6.1 / 2017-03-14
 ==================
 
-  * Update logic + tests 
+  * Update logic + tests
 
 2.6.0 / 2017-03-13
 ==================
 
-  * Merge both legacy 2016-10-26 versioned integration so that we can support both based on setting 
+  * Merge both legacy 2016-10-26 versioned integration so that we can support both based on setting
 
 2.5.0 / 2017-03-08
 ==================
