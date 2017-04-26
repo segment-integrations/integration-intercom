@@ -1,0 +1,31 @@
+{
+  "input": {
+    "type": "identify",
+    "userId": "user-id",
+    "timestamp": "2014",
+    "traits": {
+      "created": "2014-01-01",
+      "remote_created_at": "2014-01-01",
+      "email": "jd@example.com",
+      "firstName": "john",
+      "lastName": "doe"
+    },
+    "context": {
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36"
+    }
+  },
+  "output": {
+    "user_id": "user-id",
+    "email": "jd@example.com",
+    "last_request_at": 1388534400,
+    "last_seen_user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36",
+    "remote_created_at": 1388534400,
+    "created_at": 1388534400,
+    "name": "john doe",
+    "custom_attributes": {
+      "firstName": "john",
+      "lastName": "doe",
+      "id": "user-id"
+    }
+  }
+}

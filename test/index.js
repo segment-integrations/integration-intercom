@@ -744,24 +744,24 @@ describe('Intercom V1', function(){
   describe('mapper', function(){
     describe('identify', function(){
       it('should map basic identify', function(){
-        test.maps('identify-basic');
+        test.maps('identify-basic-v1');
       });
 
       it('should map basic context', function(){
-        test.maps('identify-context');
+        test.maps('identify-context-v1');
       });
 
       it('should map additional context if collectContext', function () {
         settings.collectContext = true;
-        test.maps('identify-collect-context')
+        test.maps('identify-collect-context-v1')
       });
 
       it('should respect .active()', function(){
-        test.maps('identify-active');
+        test.maps('identify-active-v1');
       });
 
       it('should map nested dates', function(){
-        test.maps('identify-nested-dates');
+        test.maps('identify-nested-dates-v1');
       });
 
       it('should map companies', function(){
@@ -789,15 +789,15 @@ describe('Intercom V1', function(){
       });
 
       it('should update last_request_at with lastRequestAt when supplied', function(){
-        test.maps('identify-last-request-at');
+        test.maps('identify-last-request-at-v1');
       });
 
       it('should update last_seen_user_agent with userAgent when supplied', function(){
-        test.maps('identify-last-seen-user-agent');
+        test.maps('identify-last-seen-user-agent-v1');
       });
 
       it('should update unsubscribed_from_emails with unsubscribedFromEmails when supplied', function(){
-        test.maps('identify-unsubscribed-from-emails');
+        test.maps('identify-unsubscribed-from-emails-v1');
       });
     });
 
@@ -827,9 +827,10 @@ describe('Intercom V1', function(){
       delete traits.company;
       delete traits.phone;
       delete traits.email;
+      delete traits.created_at;
 
+      payload.created_at = time(msg.created());
       payload.user_id = msg.userId();
-      payload.remote_created_at = time(msg.created());
       payload.last_request_at = time(msg.timestamp());
       payload.last_seen_ip = msg.ip();
       payload.last_seen_user_agent = msg.userAgent();
