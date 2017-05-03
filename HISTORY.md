@@ -1,4 +1,10 @@
 
+2.7.0 / 2017-05-03
+==================
+
+  * Ensure created_at sent consistently across server and create
+  * Pass remote_created_at correctly
+
 2.6.6 / 2017-04-17
 ==================
 
